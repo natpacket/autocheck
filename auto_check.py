@@ -105,7 +105,8 @@ def main():
     # message = check(user_id, login_dev)
     message = 'test'
     wx = WXMsg(corpid, secret, agentid)
-    content = f'*{user}*的签到状态:{message}'+login_dev+passwd
+    content = f'*{user}*的签到状态:{message} '+login_dev+' '+passwd
+    print(content)
     wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
 
 
