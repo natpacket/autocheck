@@ -56,7 +56,7 @@ class WXMsg:
             "duplicate_check_interval": 1800
         }
         resp = requests.post(url=url, json=payload)
-        print(resp.text)
+        # print(resp.text)
 
 
 # 登录
@@ -87,7 +87,7 @@ def check(user_id, login_dev):
     check_url = f"https://work.cninct.com/SUITANGOA?op=UploadAttendDetails&userid={user_id}"
     res = ss.post(url=check_url, json=payload)
     ret_json = res.json()
-    # print(ret_json)
+    print(ret_json)
     return ret_json['message']
 
 
@@ -101,12 +101,12 @@ def main():
     login_dev = input('登录设备:')
     # print(login_dev)
     login_dev = login_dev.replace('\'', '')
-    user_id = login(user, passwd)
-    message = check(user_id, login_dev)
-    # message = 'test'
+    # user_id = login(user, passwd)
+    # message = check(user_id, login_dev)
+    message = 'test'
     wx = WXMsg(corpid, secret, agentid)
     content = f'*{user}*的签到状态:{message}'
-    # print(content)
+    print(content)
     wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
 
 
