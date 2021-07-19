@@ -101,14 +101,14 @@ def main():
     login_dev = input('登录设备:')
     # print(login_dev)
     login_dev = login_dev.replace('\'', '')
-    # user_id = login(user, passwd)
-    # message = check(user_id, login_dev)
-    message = 'test'
+    user_id = login(user, passwd)
+    message = check(user_id, login_dev)
+    # message = 'test'
     wx = WXMsg(corpid, secret, agentid)
     content = f'*{user}*的签到状态:{message}'
-    check_time = time.strftime("%H:%M:%S", time.localtime())
-    check_date = time.strftime("%Y-%m-%d", time.localtime())
-    print(f'日期：{check_date}时间：{check_time}')
+    # check_time = time.strftime("%H:%M:%S", time.localtime())
+    # check_date = time.strftime("%Y-%m-%d", time.localtime())
+    # print(f'日期：{check_date}时间：{check_time}')
     wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
 
 

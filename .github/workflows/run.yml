@@ -7,8 +7,6 @@ on:
     branches: [ master ]
   schedule:
     - cron: '0 8,18 * * 1-5'
-  watch:
-    types: started
 
 jobs:
   build:
