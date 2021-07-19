@@ -25,6 +25,9 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+        export TZ='Asia/Shanghai'
+        source ~/.bashrc
+
         corpid='${{ secrets.CORPID }}'
         secret='${{ secrets.SECRET }}'
         agentid='${{ secrets.AGENTID}}'
