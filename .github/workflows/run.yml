@@ -48,7 +48,7 @@ jobs:
         done
         for d in ${dev[*]}
         do
-        pwd_list[${#dev_list[*]}]=${d}
+        dev_list[${#dev_list[*]}]=${d}
         done
         user_num=${#user_list[*]}
         pwd_num=${#pwd_list[*]}
