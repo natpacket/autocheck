@@ -56,7 +56,7 @@ class WXMsg:
             "duplicate_check_interval": 1800
         }
         resp = requests.post(url=url, json=payload)
-        # print(resp.text)
+        print(resp.text)
 
 
 # 登录
@@ -106,7 +106,9 @@ def main():
     message = 'test'
     wx = WXMsg(corpid, secret, agentid)
     content = f'*{user}*的签到状态:{message}'
-    print(content)
+    check_time = time.strftime("%H:%M:%S", time.localtime())
+    check_date = time.strftime("%Y-%m-%d", time.localtime())
+    print(f'日期：{check_date}时间：{check_time}')
     wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
 
 
