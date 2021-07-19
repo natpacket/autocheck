@@ -99,6 +99,7 @@ def main():
     user = input('账号:')
     passwd = input('密码:')
     login_dev = input('登录设备:')
+    print(corpid,secret,agentid,toparty,user,passwd)
     login_dev = login_dev.replace('\'', '')
     # user_id = login(user, passwd)
     # message = check(user_id, login_dev)
