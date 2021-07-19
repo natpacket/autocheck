@@ -100,8 +100,9 @@ def main():
     passwd = input('密码:')
     login_dev = input('登录设备:')
     login_dev = login_dev.replace('\'', '')
-    user_id = login(user, passwd)
-    message = check(user_id, login_dev)
+    # user_id = login(user, passwd)
+    # message = check(user_id, login_dev)
+    message = 'test'
     wx = WXMsg(corpid, secret, agentid)
     content = f'*{user}*的签到状态:{message}'
     wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
