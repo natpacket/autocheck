@@ -1,9 +1,7 @@
 name: 公司上班下班签到
 
 on:
-  schedule:
-    - cron: '10 0,10 * * 1-5'
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
