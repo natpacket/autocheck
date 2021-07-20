@@ -105,11 +105,22 @@ def main():
     message = check(user_id, login_dev)
     # message = 'test'
     wx = WXMsg(corpid, secret, agentid)
-    content = f'*{user}*的签到状态:{message}'
+    if message == '上传成功':
+        message = '√\n\n所有签到都圆满完成！\n今天也是元气满满的一天！\n┗|｀O′|┛ 嗷~~\n'
+    else:
+        message = 'X\n\n签到失败！\n请检查网络或者账号！\n今天很丧呢！┗|｀O′|┛ 嗷~~\n'
+    status = "上班"
+    if time.localtime().tm_hour < 12:
+        pass
+    else:
+        status = "下班"
+    content = f'*{user}* 以下是你今日的打卡情况：\n\n --------\n\n'
+    content += f' {status}签到     {message}\n'
+    content += '--------'
     # check_time = time.strftime("%H:%M:%S", time.localtime())
     # check_date = time.strftime("%Y-%m-%d", time.localtime())
     # print(f'日期：{check_date}时间：{check_time}')
-    wx.send_msg(title='隧唐签到结果', content=content, toparty=toparty)
+    wx.send_msg(title='每日签到任务', content=content, toparty=toparty)
 
 
 if __name__ == '__main__':
