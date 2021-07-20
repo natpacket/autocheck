@@ -102,8 +102,8 @@ def main():
     # print(login_dev)
     login_dev = login_dev.replace('\'', '')
     user_id = login(user, passwd)
-    message = check(user_id, login_dev)
-    # message = 'test'
+    # message = check(user_id, login_dev)
+    message = 'test'
     wx = WXMsg(corpid, secret, agentid)
     content = f'*{user}*的签到状态:{message}'
     # check_time = time.strftime("%H:%M:%S", time.localtime())
