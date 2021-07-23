@@ -96,6 +96,7 @@ def main():
     secret = input('微信接口密文:')
     agentid = input('微信应用id:')
     toparty = input('部门id:')
+    wx_name = input('微信名字：')
     user = input('账号:')
     passwd = input('密码:')
     login_dev = input('登录设备:')
@@ -123,7 +124,7 @@ def main():
     # check_time = time.strftime("%H:%M:%S", time.localtime())
     # check_date = time.strftime("%Y-%m-%d", time.localtime())
     # print(f'日期：{check_date}时间：{check_time}')
-    wx.send_msg(title='每日签到任务', content=content, toparty=toparty)
+    wx.send_msg(title='每日签到任务', content=content, touser=wx_name,toparty=toparty)
 
 
 if __name__ == '__main__':

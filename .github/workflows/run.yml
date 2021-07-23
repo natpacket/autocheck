@@ -26,16 +26,22 @@ jobs:
         toparty='${{ secrets.TOPARTY}}'
 
         user='${{ secrets.USER }}'
+        wx_user='${{ secrets.WX_USER }}'
         pwd='${{ secrets.PASSWD }}'
         dev='${{ secrets.LOGIN_DEV }}'
         
         user_list=()
+        wx_user_list=()
         pwd_list=()
         dev_list=()
         IFS="#"
         for u in ${user[*]}
         do
         user_list[${#user_list[*]}]=${u}
+        done
+        for wx_u in ${wx_user[*]}
+        do
+        wx_user_list[${#wx_user_list[*]}]=${wx_u}
         done
         for p in ${pwd[*]}
         do
@@ -46,10 +52,11 @@ jobs:
         dev_list[${#dev_list[*]}]=${d}
         done
         user_num=${#user_list[*]}
+        wx_user_num=${#wx_user_list[*]}
         pwd_num=${#pwd_list[*]}
         dev_num=${#dev_list[*]}
-        if [[ $user_num != $pwd_num || $user_num != $dev_num ]];then
-        echo "账号和密码、设备个数不对应"
+        if [[ $user_num != $pwd_num || $user_num != $dev_num || $wx_user_num != $user_num ]];then
+        echo "账号和密码、设备、微信用户个数不对应"
         exit 1
         else
         echo "共有 $user_num 个账号，即将开始签到"
@@ -61,6 +68,7 @@ jobs:
         ${secret}
         ${agentid}
         ${toparty}
+        ${wx_user_list[$i]}
         ${user_list[$i]}
         ${pwd_list[$i]}
         ${dev_list[$i]}
