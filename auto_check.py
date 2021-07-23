@@ -41,7 +41,7 @@ class WXMsg:
         # print(url)
         payload = {
             "touser": touser,
-            "toparty": toparty,
+            # "toparty": toparty,
             # "totag": "TagID1 | TagID2",
             "msgtype": "textcard",
             "agentid": self.agentid,
@@ -106,7 +106,7 @@ def main():
     message = check(user_id, login_dev)
     # message = 'test'
     wx = WXMsg(corpid, secret, agentid)
-    content = f'*{user}* 以下是你今日的打卡情况：\n\n --------\n\n'
+    content = f'*{wx_name}* 以下是你今日的打卡情况：\n\n --------\n\n'
     status = "上班"
     if time.localtime().tm_hour < 12:
         pass
