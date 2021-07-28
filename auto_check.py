@@ -1,10 +1,9 @@
 # -*- coding:utf-8 -*-
+from hashlib import md5
 import requests
 import time
-from hashlib import md5
-import smtplib
 import random
-from email.mime.text import MIMEText
+import json
 
 ss = requests.session()
 
@@ -91,7 +90,52 @@ def check(user_id, login_dev):
     return ret_json['message']
 
 
-def main():
+def main(a, b):
+    # corpid = input('公司id:')
+    # secret = input('微信接口密文:')
+    # agentid = input('微信应用id:')
+    # toparty = input('部门id:')
+    # wx_name = input('微信名字：')
+    # user = input('账号:')
+    # passwd = input('密码:')
+    # login_dev = input('登录设备:')
+    with open(file='./config.json', encoding='utf-8') as f:
+        data = json.loads(f.read())
+    corpid = data.get('corpid')
+    secret = data.get('secret')
+    agentid = data.get('agentid')
+    touser = data.get('touser')
+    user = data.get('user')
+    passwd = data.get('passwd')
+    login_dev = data.get('login_dev')
+    # 登录
+    user_id = login(user, passwd)
+    # 签到
+    message = check(user_id, login_dev)
+    # message = 'test'
+    wx = WXMsg(corpid, secret, agentid)
+    content = f'*{touser}* 以下是你今日的打卡情况：\n\n --------\n\n'
+    status = "上班"
+    if time.localtime().tm_hour < 12:
+        pass
+    else:
+        status = "下班"
+    if message == '上传成功':
+        if status == '下班':
+            message = f'上班签到        √\n\n{status}签到        √\n\n所有签到都圆满完成！\n今天也是元气满满的一天！\n┗|｀O′|┛ 嗷~~\n'
+        else:
+            message = f'{status}签到        √\n\n下班签到        X\n\n坐等下班啦！\n加油今天好好干！\n┗|｀O′|┛ 嗷~~\n'
+    else:
+        message = f'{status}       X\n\n签到失败！\n请检查网络或者账号！\n今天很丧呢！┗|｀O′|┛ 嗷~~\n'
+    content += message
+    content += '--------'
+    # check_time = time.strftime("%H:%M:%S", time.localtime())
+    # check_date = time.strftime("%Y-%m-%d", time.localtime())
+    # print(f'日期：{check_date}时间：{check_time}')
+    wx.send_msg(title='每日签到任务', content=content, touser=touser)
+
+
+if __name__ == '__main__':
     corpid = input('公司id:')
     secret = input('微信接口密文:')
     agentid = input('微信应用id:')
@@ -124,8 +168,4 @@ def main():
     # check_time = time.strftime("%H:%M:%S", time.localtime())
     # check_date = time.strftime("%Y-%m-%d", time.localtime())
     # print(f'日期：{check_date}时间：{check_time}')
-    wx.send_msg(title='每日签到任务', content=content, touser=wx_name,toparty=toparty)
-
-
-if __name__ == '__main__':
-    main()
+    wx.send_msg(title='每日签到任务', content=content, touser=wx_name)
