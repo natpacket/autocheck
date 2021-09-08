@@ -19,9 +19,11 @@ inputs:
   events: # 触发器配置
     - timer: # 定时触发器
         parameters:
+          name: '上班打卡'
           cronExpression: '0 41 8 * * 1-5 *'
           enable: true
     - timer: # 定时触发器
         parameters:
+          name: '下班打卡'
           cronExpression: '0 16 18 * * 1-5 *'
           enable: true
