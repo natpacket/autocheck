@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 from hashlib import md5
+from chinese_calendar import is_workday
 import requests
+from datetime import datetime
 import time
 import random
 import json
@@ -91,6 +93,8 @@ def check(user_id, login_dev):
 
 
 def main(a, b):
+    if not is_workday(datetime.now()):
+        return
     # corpid = input('公司id:')
     # secret = input('微信接口密文:')
     # agentid = input('微信应用id:')
