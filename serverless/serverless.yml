@@ -20,10 +20,10 @@ inputs:
     - timer: # 定时触发器
         parameters:
           name: 'morning'
-          cronExpression: '0 41 8 * * 1-5 *'
+          cronExpression: '0 41 8 * * * *'
           enable: true
     - timer: # 定时触发器
         parameters:
           name: 'night'
-          cronExpression: '0 16 18 * * 1-5 *'
+          cronExpression: '0 16 18 * * * *'
           enable: true
