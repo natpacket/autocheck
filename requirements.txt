@@ -1,2 +1,2 @@
-chinesecalendar==1.5.1
+chinesecalendar==1.6.0
 requests==2.25.1
